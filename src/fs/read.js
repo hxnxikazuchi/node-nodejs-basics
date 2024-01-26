@@ -1,16 +1,20 @@
-import fs from "fs";
+import { promises as fs } from "fs";
 
 const read = async () => {
-  const isFileExists = fs.existsSync("./files/fileToRead.txt");
-  if (!isFileExists) {
-    throw Error("FS operation failed");
-  }
-  fs.readFile("./files/fileToRead.txt", "utf8", (err, data) => {
-    if (err) {
-      console.log(err);
+  try {
+    const filePath = "./files/fileToRead.txt";
+
+    try {
+      await fs.access(filePath);
+    } catch (error) {
+      throw Error("FS operation failed");
     }
+
+    const data = await fs.readFile(filePath, "utf8");
     console.log(data);
-  });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 await read();
