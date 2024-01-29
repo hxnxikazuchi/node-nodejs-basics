@@ -1,10 +1,6 @@
-import { fork } from "child_process";
-
 const spawnChildProcess = async (args) => {
-  const child = fork("./files/script.js", args);
-  child.on("message", (message) => {
-    console.log("Result: ", message);
-  });
+    // Write your code here
 };
 
-spawnChildProcess(['arg1', 'arg2']);
+// Put your arguments in function call to test this functionality
+spawnChildProcess( /* [someArgument1, someArgument2, ...] */);
